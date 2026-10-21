@@ -44,9 +44,12 @@ try {
 echo "==> Migrando la base y sembrando roles + usuarios"
 php artisan migrate --force --seed
 
-echo "==> Sembrando catalogo (8 productos) y ventas de demo"
-# Idempotente: si ya hay pedidos cargados no genera nada de nuevo.
-php artisan db:seed --class=DemoSalesSeeder --force || true
+# Los datos de demo son opcionales: en produccion el catalogo se carga a mano
+# desde el panel de administracion. Para sembrarlos, definir DEMO_DATA=true.
+if [ "${DEMO_DATA:-false}" = "true" ]; then
+    echo "==> Sembrando catalogo y ventas de demo"
+    php artisan db:seed --class=DemoSalesSeeder --force || true
+fi
 
 echo "==> Dejando las contrasenas que documenta el proyecto"
 # DatabaseSeeder crea los usuarios con "password"; el proyecto documenta otra.
