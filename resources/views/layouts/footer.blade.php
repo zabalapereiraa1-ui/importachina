@@ -7,7 +7,7 @@
             </div>
 
             <p class="text-center text-sm text-slate-500 sm:text-right">
-                {{ __('Proyecto de comercio electrónico e importación. Precios en bolivianos (Bs).') }}
+                {{ __('Integrantes: Ana Zabala Pereira, Genny Temo Cayuba.') }}
             </p>
 
             <nav class="flex items-center gap-4 text-sm">
