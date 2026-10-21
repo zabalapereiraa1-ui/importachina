@@ -44,7 +44,7 @@ class DashboardTest extends TestCase
             ->assertSee('Productos activos')
             ->assertSee('Stock bajo')
             ->assertSee('Accesos rápidos')
-            ->assertSee('<p class="text-2xl font-bold text-gray-900">Bs 150.00</p>', false)
+            ->assertSee('<p class="text-2xl font-bold text-slate-900">Bs 150.00</p>', false)
             ->assertSee(route('admin.products.create'), false)
             ->assertSee(route('admin.reports.index'), false)
             ->assertDontSee('Por cobrar');
@@ -64,7 +64,7 @@ class DashboardTest extends TestCase
             ->assertSee('Ventas del mes')
             ->assertSee('Por cobrar')
             ->assertSee('Pendientes de despacho')
-            ->assertSee('<p class="text-2xl font-bold text-gray-900">Bs 60.00</p>', false)
+            ->assertSee('<p class="text-2xl font-bold text-slate-900">Bs 60.00</p>', false)
             ->assertSee(route('vendedor.orders.index'), false)
             ->assertDontSee('Productos activos')
             ->assertDontSee('Stock bajo')
