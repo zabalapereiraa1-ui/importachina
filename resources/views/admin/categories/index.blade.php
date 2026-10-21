@@ -7,7 +7,7 @@
         <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
             <div>
                 <h1 class="text-2xl font-bold">Categorias</h1>
-                <p class="text-sm text-gray-600">{{ $categories->total() }} categoria(s) definidas</p>
+                <p class="text-sm text-slate-600">{{ $categories->total() }} categoria(s) definidas</p>
             </div>
 
             <a href="{{ route('admin.categories.create') }}"
@@ -20,7 +20,7 @@
 
         <div class="bg-white rounded shadow overflow-x-auto">
             <table class="min-w-full">
-                <thead class="bg-gray-100">
+                <thead class="bg-slate-100">
                     <tr>
                         <th class="px-4 py-2 text-left">Nombre</th>
                         <th class="px-4 py-2 text-left">Slug</th>
@@ -33,8 +33,8 @@
                     @forelse ($categories as $category)
                         <tr class="border-t">
                             <td class="px-4 py-2 font-medium">{{ $category->name }}</td>
-                            <td class="px-4 py-2 text-sm text-gray-600">{{ $category->slug }}</td>
-                            <td class="px-4 py-2 text-sm text-gray-600">{{ $category->external_category_id ?: '—' }}</td>
+                            <td class="px-4 py-2 text-sm text-slate-600">{{ $category->slug }}</td>
+                            <td class="px-4 py-2 text-sm text-slate-600">{{ $category->external_category_id ?: '—' }}</td>
                             <td class="px-4 py-2 text-right">{{ $category->products_count }}</td>
                             <td class="px-4 py-2">
                                 <div class="flex items-center gap-3">
@@ -54,7 +54,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="5" class="px-4 py-6 text-gray-600">
+                            <td colspan="5" class="px-4 py-6 text-slate-600">
                                 Todavia no hay categorias.
                                 <a href="{{ route('admin.categories.create') }}" class="text-blue-600 hover:underline">Crear la primera</a>.
                             </td>

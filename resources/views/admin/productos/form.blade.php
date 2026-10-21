@@ -42,22 +42,22 @@
                 <h2 class="text-lg font-bold">Datos del producto</h2>
 
                 <label class="block text-sm">
-                    <span class="block text-gray-600 mb-1">Titulo <span class="text-red-600">*</span></span>
+                    <span class="block text-slate-600 mb-1">Titulo <span class="text-red-600">*</span></span>
                     <input type="text" name="title" value="{{ old('title', $product->title) }}" required
-                           maxlength="255" class="w-full border-gray-300 rounded">
+                           maxlength="255" class="w-full border-slate-300 rounded">
                     @error('title') <span class="text-sm text-red-600">{{ $message }}</span> @enderror
                 </label>
 
                 <label class="block text-sm">
-                    <span class="block text-gray-600 mb-1">Descripcion</span>
+                    <span class="block text-slate-600 mb-1">Descripcion</span>
                     <textarea name="description" rows="5" maxlength="5000"
-                              class="w-full border-gray-300 rounded">{{ old('description', $product->description) }}</textarea>
+                              class="w-full border-slate-300 rounded">{{ old('description', $product->description) }}</textarea>
                     @error('description') <span class="text-sm text-red-600">{{ $message }}</span> @enderror
                 </label>
 
                 <label class="block text-sm">
-                    <span class="block text-gray-600 mb-1">Categoria</span>
-                    <select name="category_id" class="w-full border-gray-300 rounded">
+                    <span class="block text-slate-600 mb-1">Categoria</span>
+                    <select name="category_id" class="w-full border-slate-300 rounded">
                         <option value="">Sin categoria</option>
                         @foreach ($categories as $category)
                             <option value="{{ $category->id }}" @selected(old('category_id', $product->category_id) == $category->id)>
@@ -71,31 +71,31 @@
 
             <div class="bg-white rounded shadow p-6 space-y-4">
                 <h2 class="text-lg font-bold">Precios (HU-07)</h2>
-                <p class="text-sm text-gray-600">
+                <p class="text-sm text-slate-600">
                     El precio de venta no se escribe: se calcula a partir del costo y del margen.
                 </p>
 
                 <div class="grid gap-4 sm:grid-cols-3">
                     <label class="block text-sm">
-                        <span class="block text-gray-600 mb-1">Costo (Bs) <span class="text-red-600">*</span></span>
+                        <span class="block text-slate-600 mb-1">Costo (Bs) <span class="text-red-600">*</span></span>
                         <input type="number" name="cost_price" step="0.01" min="0" required
                                x-model.number="cost"
                                value="{{ old('cost_price', $product->cost_price) }}"
-                               class="w-full border-gray-300 rounded">
+                               class="w-full border-slate-300 rounded">
                         @error('cost_price') <span class="text-sm text-red-600">{{ $message }}</span> @enderror
                     </label>
 
                     <label class="block text-sm">
-                        <span class="block text-gray-600 mb-1">Margen (%) <span class="text-red-600">*</span></span>
+                        <span class="block text-slate-600 mb-1">Margen (%) <span class="text-red-600">*</span></span>
                         <input type="number" name="margin_pct" step="0.01" min="0" max="500" required
                                x-model.number="margin"
                                value="{{ old('margin_pct', $product->margin_pct) }}"
-                               class="w-full border-gray-300 rounded">
+                               class="w-full border-slate-300 rounded">
                         @error('margin_pct') <span class="text-sm text-red-600">{{ $message }}</span> @enderror
                     </label>
 
                     <div class="block text-sm">
-                        <span class="block text-gray-600 mb-1">Precio de venta (calculado)</span>
+                        <span class="block text-slate-600 mb-1">Precio de venta (calculado)</span>
                         <p class="px-3 py-2 bg-green-50 border border-green-200 rounded font-semibold text-green-700"
                            x-text="'Bs ' + sale"></p>
                     </div>
@@ -105,10 +105,10 @@
                     <input type="hidden" name="price_locked" value="0">
                     <input type="checkbox" name="price_locked" value="1"
                            @checked(old('price_locked', $product->price_locked))
-                           class="mt-1 rounded border-gray-300">
+                           class="mt-1 rounded border-slate-300">
                     <span>
                         Fijar este precio (costo y margen).
-                        <span class="text-xs text-gray-500">
+                        <span class="text-xs text-slate-500">
                             Si esta marcado, la sincronizacion con AliExpress no lo modifica.
                         </span>
                     </span>
@@ -116,10 +116,10 @@
                 @error('price_locked') <span class="text-sm text-red-600">{{ $message }}</span> @enderror
 
                 <label class="block text-sm max-w-xs">
-                    <span class="block text-gray-600 mb-1">Stock <span class="text-red-600">*</span></span>
+                    <span class="block text-slate-600 mb-1">Stock <span class="text-red-600">*</span></span>
                     <input type="number" name="stock" min="0" required
                            value="{{ old('stock', $product->stock ?? 0) }}"
-                           class="w-full border-gray-300 rounded">
+                           class="w-full border-slate-300 rounded">
                     @error('stock') <span class="text-sm text-red-600">{{ $message }}</span> @enderror
                 </label>
             </div>
@@ -128,14 +128,14 @@
                 <h2 class="text-lg font-bold">Imagenes y origen</h2>
 
                 <label class="block text-sm">
-                    <span class="block text-gray-600 mb-1">URL de la imagen principal</span>
+                    <span class="block text-slate-600 mb-1">URL de la imagen principal</span>
                     <div class="flex gap-2" x-data="{ url: @js(old('image_url', $product->image_url)) }">
                         <input type="url" name="image_url" maxlength="2000"
                                x-ref="campo" x-model="url"
                                value="{{ old('image_url', $product->image_url) }}"
-                               class="flex-1 border-gray-300 rounded" placeholder="https://...">
+                               class="flex-1 border-slate-300 rounded" placeholder="https://...">
                         <button type="button" x-show="url" @click="url = ''; $refs.campo.focus()"
-                                class="shrink-0 rounded border border-gray-300 px-3 text-sm text-gray-600 hover:bg-gray-100">
+                                class="shrink-0 rounded border border-slate-300 px-3 text-sm text-slate-600 hover:bg-slate-100">
                             Vaciar
                         </button>
                     </div>
@@ -143,14 +143,14 @@
                 </label>
 
                 <label class="block text-sm">
-                    <span class="block text-gray-600 mb-1">URL del producto en AliExpress</span>
+                    <span class="block text-slate-600 mb-1">URL del producto en AliExpress</span>
                     <div class="flex gap-2" x-data="{ url: @js(old('source_url', $product->source_url)) }">
                         <input type="url" name="source_url" maxlength="2000"
                                x-ref="campo" x-model="url"
                                value="{{ old('source_url', $product->source_url) }}"
-                               class="flex-1 border-gray-300 rounded" placeholder="https://...">
+                               class="flex-1 border-slate-300 rounded" placeholder="https://...">
                         <button type="button" x-show="url" @click="url = ''; $refs.campo.focus()"
-                                class="shrink-0 rounded border border-gray-300 px-3 text-sm text-gray-600 hover:bg-gray-100">
+                                class="shrink-0 rounded border border-slate-300 px-3 text-sm text-slate-600 hover:bg-slate-100">
                             Vaciar
                         </button>
                     </div>
@@ -158,11 +158,11 @@
                 </label>
 
                 <label class="block text-sm">
-                    <span class="block text-gray-600 mb-1">Identificador externo</span>
+                    <span class="block text-slate-600 mb-1">Identificador externo</span>
                     <input type="text" name="external_id" maxlength="255"
                            value="{{ old('external_id', $product->external_id) }}"
-                           class="w-full border-gray-300 rounded">
-                    <span class="text-xs text-gray-500">
+                           class="w-full border-slate-300 rounded">
+                    <span class="text-xs text-slate-500">
                         Lo usa la sincronizacion con la API para no duplicar productos.
                     </span>
                     @error('external_id') <span class="text-sm text-red-600">{{ $message }}</span> @enderror
@@ -173,8 +173,8 @@
                         max: 12
                      }">
                     <div class="flex items-baseline justify-between mb-1">
-                        <span class="block text-gray-600">Imagenes adicionales (galeria)</span>
-                        <span class="text-xs text-gray-500" x-text="imagenes.length + ' / ' + max"></span>
+                        <span class="block text-slate-600">Imagenes adicionales (galeria)</span>
+                        <span class="text-xs text-slate-500" x-text="imagenes.length + ' / ' + max"></span>
                     </div>
 
                     <div class="space-y-2">
@@ -182,22 +182,22 @@
                             <div class="flex gap-2">
                                 <input type="url" name="images[]" maxlength="2000"
                                        x-model="imagenes[indice]"
-                                       class="flex-1 border-gray-300 rounded" placeholder="https://...">
+                                       class="flex-1 border-slate-300 rounded" placeholder="https://...">
                                 <button type="button" @click="imagenes.splice(indice, 1)"
-                                        class="shrink-0 rounded border border-gray-300 px-3 text-sm text-gray-600 hover:bg-gray-100">
+                                        class="shrink-0 rounded border border-slate-300 px-3 text-sm text-slate-600 hover:bg-slate-100">
                                     Quitar
                                 </button>
                             </div>
                         </template>
 
-                        <p x-show="imagenes.length === 0" class="text-sm text-gray-500">
+                        <p x-show="imagenes.length === 0" class="text-sm text-slate-500">
                             Todavia no hay imagenes adicionales: pega aqui las fotos extra del producto
                             (hasta 12), como las fichas de AliExpress.
                         </p>
                     </div>
 
                     <button type="button" x-show="imagenes.length < max" @click="imagenes.push('')"
-                            class="mt-3 rounded border border-gray-300 px-3 py-1.5 text-sm text-gray-600 hover:bg-gray-100">
+                            class="mt-3 rounded border border-slate-300 px-3 py-1.5 text-sm text-slate-600 hover:bg-slate-100">
                         + Agregar imagen
                     </button>
 
@@ -211,7 +211,7 @@
                 <label class="flex items-center gap-2 text-sm">
                     <input type="hidden" name="active" value="0">
                     <input type="checkbox" name="active" value="1"
-                           @checked(old('active', $product->active ?? true)) class="rounded border-gray-300">
+                           @checked(old('active', $product->active ?? true)) class="rounded border-slate-300">
                     <span>Producto activo: aparece en el catalogo publico.</span>
                 </label>
                 @error('active') <span class="text-sm text-red-600">{{ $message }}</span> @enderror
@@ -221,7 +221,7 @@
                 <button type="submit" class="px-5 py-2 bg-blue-600 text-white rounded">
                     {{ $isEdit ? 'Guardar cambios' : 'Crear producto' }}
                 </button>
-                <a href="{{ route('admin.products.index') }}" class="px-5 py-2 bg-gray-200 text-gray-700 rounded">
+                <a href="{{ route('admin.products.index') }}" class="px-5 py-2 bg-slate-200 text-slate-700 rounded">
                     Cancelar
                 </a>
             </div>

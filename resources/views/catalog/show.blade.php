@@ -9,25 +9,25 @@
     @endphp
 
     {{-- Migas de pan --}}
-    <nav class="mb-4 text-sm text-gray-500">
-        <a href="{{ route('catalog.index') }}" class="transition hover:text-indigo-700 hover:underline">
+    <nav class="mb-4 text-sm text-slate-500">
+        <a href="{{ route('catalog.index') }}" class="transition hover:text-teal-700 hover:underline">
             {{ __('Catálogo') }}
         </a>
         <span class="mx-1.5" aria-hidden="true">/</span>
         @if ($product->category)
             <a href="{{ route('catalog.index', ['category' => $product->category->slug]) }}"
-               class="transition hover:text-indigo-700 hover:underline">
+               class="transition hover:text-teal-700 hover:underline">
                 {{ $product->category->name }}
             </a>
             <span class="mx-1.5" aria-hidden="true">/</span>
         @endif
-        <span class="text-gray-900">{{ $product->title }}</span>
+        <span class="text-slate-900">{{ $product->title }}</span>
     </nav>
 
     <div class="grid grid-cols-1 gap-8 lg:grid-cols-2">
         {{-- Galeria --}}
         <div x-data="{ activa: null }">
-            <div class="overflow-hidden rounded-xl border border-gray-200 bg-white">
+            <div class="overflow-hidden rounded-xl border border-slate-200 bg-white">
                 <img src="{{ $cover ?: asset('images/placeholder.svg') }}"
                      :src="activa || @js($cover ?: asset('images/placeholder.svg'))"
                      alt="{{ $product->title }}" loading="lazy" decoding="async"
@@ -40,9 +40,9 @@
                     @foreach ($gallery as $imageUrl)
                         <button type="button" @click="activa = @js($imageUrl)"
                                 :class="activa === @js($imageUrl)
-                                    ? 'border-indigo-500 ring-1 ring-indigo-400'
-                                    : 'border-gray-200 hover:border-indigo-400'"
-                                class="overflow-hidden rounded-lg border bg-gray-100 transition">
+                                    ? 'border-teal-500 ring-1 ring-teal-400'
+                                    : 'border-slate-200 hover:border-teal-400'"
+                                class="overflow-hidden rounded-lg border bg-slate-100 transition">
                             <x-product-image
                                 :src="$imageUrl"
                                 :alt="$product->title"
@@ -58,20 +58,20 @@
         <div class="flex flex-col">
             @if ($product->category)
                 <a href="{{ route('catalog.index', ['category' => $product->category->slug]) }}"
-                   class="w-fit text-xs font-medium tracking-wide text-indigo-600 uppercase hover:underline">
+                   class="w-fit text-xs font-medium tracking-wide text-teal-600 uppercase hover:underline">
                     {{ $product->category->name }}
                 </a>
             @endif
 
-            <h1 class="mt-2 text-2xl font-bold text-gray-900 sm:text-3xl">
+            <h1 class="mt-2 text-2xl font-bold text-slate-900 sm:text-3xl">
                 {{ $product->title }}
             </h1>
 
-            <p class="mt-3 text-3xl font-bold text-gray-900">
+            <p class="mt-3 text-3xl font-bold text-slate-900">
                 Bs {{ number_format($product->sale_price, 2) }}
             </p>
 
-            <p class="mt-2 text-sm text-gray-600">
+            <p class="mt-2 text-sm text-slate-600">
                 {{ __('Stock disponible:') }}
                 <strong class="{{ $product->stock > 0 ? 'text-emerald-600' : 'text-red-600' }}">
                     {{ $product->stock === 1
@@ -81,11 +81,11 @@
             </p>
 
             @if ($product->description)
-                <div class="mt-6 border-t border-gray-200 pt-6 text-sm leading-relaxed text-gray-700">
+                <div class="mt-6 border-t border-slate-200 pt-6 text-sm leading-relaxed text-slate-700">
                     {!! nl2br(e($product->description)) !!}
                 </div>
             @else
-                <p class="mt-6 border-t border-gray-200 pt-6 text-sm text-gray-500">
+                <p class="mt-6 border-t border-slate-200 pt-6 text-sm text-slate-500">
                     {{ __('Este producto no tiene descripción.') }}
                 </p>
             @endif
@@ -93,18 +93,18 @@
             <div class="mt-auto pt-8">
                 @if ($product->stock > 0)
                     <a href="{{ route('cart.add', $product) }}"
-                       class="inline-flex w-full items-center justify-center rounded-lg bg-indigo-600 px-6 py-3 text-base font-semibold text-white shadow-sm transition hover:bg-indigo-700 focus:ring-2 focus:ring-indigo-300 focus:outline-none sm:w-auto">
+                       class="inline-flex w-full items-center justify-center rounded-lg bg-teal-600 px-6 py-3 text-base font-semibold text-white shadow-sm transition hover:bg-teal-700 focus:ring-2 focus:ring-teal-300 focus:outline-none sm:w-auto">
                         {{ __('Añadir al carrito') }}
                     </a>
                 @else
-                    <p class="inline-flex w-full items-center justify-center rounded-lg bg-gray-100 px-6 py-3 text-base font-semibold text-gray-400 sm:w-auto">
+                    <p class="inline-flex w-full items-center justify-center rounded-lg bg-slate-100 px-6 py-3 text-base font-semibold text-slate-400 sm:w-auto">
                         {{ __('Sin stock por el momento') }}
                     </p>
                 @endif
 
                 @if ($product->source_url)
                     <a href="{{ $product->source_url }}" target="_blank" rel="noopener noreferrer"
-                       class="mt-3 flex items-center gap-1.5 text-sm font-medium text-gray-600 transition hover:text-indigo-700 hover:underline">
+                       class="mt-3 flex items-center gap-1.5 text-sm font-medium text-slate-600 transition hover:text-teal-700 hover:underline">
                         {{ __('Ver el producto en AliExpress') }}
                         <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M14 4h6v6m0-6L10 14M18 14v4a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4"/>
@@ -117,7 +117,7 @@
 
     <div class="mt-8">
         <a href="{{ route('catalog.index') }}"
-           class="inline-flex items-center gap-1.5 text-sm font-medium text-gray-600 transition hover:text-indigo-700 hover:underline">
+           class="inline-flex items-center gap-1.5 text-sm font-medium text-slate-600 transition hover:text-teal-700 hover:underline">
             <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" d="m15 18-6-6 6-6"/>
             </svg>

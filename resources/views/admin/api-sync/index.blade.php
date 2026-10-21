@@ -8,7 +8,7 @@
 @section('content')
     <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
         <h1 class="text-2xl font-bold mb-2">Sincronización de productos (AliExpress)</h1>
-        <p class="text-sm text-gray-600 mb-6">
+        <p class="text-sm text-slate-600 mb-6">
             HU-05: importa entre {{ SyncAliExpressProducts::MIN_LIMIT }} y
             {{ SyncAliExpressProducts::MAX_LIMIT }} productos por corrida.
             Un producto ya importado se actualiza, nunca se duplica.
@@ -47,17 +47,17 @@
 
                 <div class="grid gap-4 sm:grid-cols-3">
                     <label class="block text-sm sm:col-span-2">
-                        <span class="block text-gray-600 mb-1">Buscar por palabra clave</span>
+                        <span class="block text-slate-600 mb-1">Buscar por palabra clave</span>
                         <input type="text" name="keyword" value="{{ old('keyword') }}"
                                placeholder="{{ config('services.aliexpress.default_keyword') }}"
-                               class="w-full border-gray-300 rounded">
-                        <span class="text-xs text-gray-500">Si lo dejás vacío se usa ALIEXPRESS_DEFAULT_KEYWORD.</span>
+                               class="w-full border-slate-300 rounded">
+                        <span class="text-xs text-slate-500">Si lo dejás vacío se usa ALIEXPRESS_DEFAULT_KEYWORD.</span>
                         @error('keyword') <span class="text-sm text-red-600">{{ $message }}</span> @enderror
                     </label>
 
                     <label class="block text-sm">
-                        <span class="block text-gray-600 mb-1">Cantidad a importar</span>
-                        <select name="limit" class="w-full border-gray-300 rounded">
+                        <span class="block text-slate-600 mb-1">Cantidad a importar</span>
+                        <select name="limit" class="w-full border-slate-300 rounded">
                             @for ($i = 20; $i <= 50; $i += 10)
                                 <option value="{{ $i }}" @selected((int) old('limit', 20) === $i)>{{ $i }}</option>
                             @endfor
@@ -72,7 +72,7 @@
                 </button>
             </form>
 
-            <p class="text-xs text-gray-500 mt-4">
+            <p class="text-xs text-slate-500 mt-4">
                 El precio de los productos importados se guarda <strong>tal cual lo devuelve la API (USD)</strong>.
                 El margen (<code>ALIEXPRESS_MARGIN_PCT</code>) se aplica sobre ese costo para calcular el precio de venta.
             </p>
@@ -80,7 +80,7 @@
 
         <div class="bg-white shadow rounded overflow-hidden">
             <table class="min-w-full">
-                <thead class="bg-gray-100">
+                <thead class="bg-slate-100">
                     <tr>
                         <th class="px-4 py-2 text-left">Fecha</th>
                         <th class="px-4 py-2 text-left">Usuario</th>
@@ -103,7 +103,7 @@
                             <td class="px-4 py-2 text-sm">{{ $log->message }}</td>
                         </tr>
                     @empty
-                        <tr><td colspan="5" class="px-4 py-6 text-gray-600">Todavía no se ejecutó ninguna sincronización.</td></tr>
+                        <tr><td colspan="5" class="px-4 py-6 text-slate-600">Todavía no se ejecutó ninguna sincronización.</td></tr>
                     @endforelse
                 </tbody>
             </table>

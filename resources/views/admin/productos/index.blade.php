@@ -7,7 +7,7 @@
         <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
             <div>
                 <h1 class="text-2xl font-bold">Productos</h1>
-                <p class="text-sm text-gray-600">{{ $products->total() }} producto(s) en el catálogo</p>
+                <p class="text-sm text-slate-600">{{ $products->total() }} producto(s) en el catálogo</p>
             </div>
 
             <a href="{{ route('admin.products.create') }}"
@@ -21,14 +21,14 @@
         <form method="GET" action="{{ route('admin.products.index') }}" class="bg-white rounded shadow p-4 mb-6">
             <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
                 <label class="text-sm">
-                    <span class="block text-gray-600 mb-1">Buscar</span>
+                    <span class="block text-slate-600 mb-1">Buscar</span>
                     <input type="text" name="search" value="{{ $filters['search'] ?? '' }}"
-                           placeholder="Titulo del producto" class="w-full border-gray-300 rounded">
+                           placeholder="Titulo del producto" class="w-full border-slate-300 rounded">
                 </label>
 
                 <label class="text-sm">
-                    <span class="block text-gray-600 mb-1">Categoria</span>
-                    <select name="category_id" class="w-full border-gray-300 rounded">
+                    <span class="block text-slate-600 mb-1">Categoria</span>
+                    <select name="category_id" class="w-full border-slate-300 rounded">
                         <option value="">Todas</option>
                         @foreach ($categories as $category)
                             <option value="{{ $category->id }}" @selected(($filters['category_id'] ?? null) == $category->id)>
@@ -39,8 +39,8 @@
                 </label>
 
                 <label class="text-sm">
-                    <span class="block text-gray-600 mb-1">Estado</span>
-                    <select name="status" class="w-full border-gray-300 rounded">
+                    <span class="block text-slate-600 mb-1">Estado</span>
+                    <select name="status" class="w-full border-slate-300 rounded">
                         <option value="">Todos</option>
                         <option value="active" @selected(($filters['status'] ?? null) === 'active')>Activos</option>
                         <option value="inactive" @selected(($filters['status'] ?? null) === 'inactive')>Inactivos</option>
@@ -49,7 +49,7 @@
 
                 <div class="flex items-end gap-2">
                     <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded text-sm">Filtrar</button>
-                    <a href="{{ route('admin.products.index') }}" class="px-4 py-2 bg-gray-200 text-gray-700 rounded text-sm">
+                    <a href="{{ route('admin.products.index') }}" class="px-4 py-2 bg-slate-200 text-slate-700 rounded text-sm">
                         Limpiar
                     </a>
                 </div>
@@ -61,7 +61,7 @@
 
         <div class="bg-white rounded shadow overflow-x-auto">
             <table class="min-w-full">
-                <thead class="bg-gray-100">
+                <thead class="bg-slate-100">
                     <tr>
                         <th class="px-4 py-2 text-left">Producto</th>
                         <th class="px-4 py-2 text-left">Categoria</th>
@@ -82,11 +82,11 @@
                                         <img src="{{ $product->image_url }}" alt="{{ $product->title }}"
                                              class="h-12 w-12 rounded object-cover shrink-0">
                                     @else
-                                        <span class="h-12 w-12 rounded bg-gray-200 shrink-0"></span>
+                                        <span class="h-12 w-12 rounded bg-slate-200 shrink-0"></span>
                                     @endif
                                     <div>
                                         <p class="font-medium">{{ $product->title }}</p>
-                                        <p class="text-xs text-gray-500">
+                                        <p class="text-xs text-slate-500">
                                             {{ $product->external_id ?: 'Sin ID externo' }}
                                             @if ($product->images_count > 0)
                                                 <span class="ml-1">({{ $product->images_count }} imagen(es))</span>
@@ -101,7 +101,7 @@
                             <td class="px-4 py-2 text-right font-semibold">Bs {{ number_format($product->sale_price, 2) }}</td>
                             <td class="px-4 py-2 text-right">{{ $product->stock }}</td>
                             <td class="px-4 py-2">
-                                <span class="px-2 py-1 rounded text-xs font-medium {{ $product->active ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-800' }}">
+                                <span class="px-2 py-1 rounded text-xs font-medium {{ $product->active ? 'bg-green-100 text-green-800' : 'bg-slate-100 text-slate-800' }}">
                                     {{ $product->statusLabel() }}
                                 </span>
                             </td>
@@ -123,7 +123,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="8" class="px-4 py-6 text-gray-600">
+                            <td colspan="8" class="px-4 py-6 text-slate-600">
                                 No hay productos que coincidan con el filtro.
                                 <a href="{{ route('admin.products.create') }}" class="text-blue-600 hover:underline">Crear el primero</a>.
                             </td>

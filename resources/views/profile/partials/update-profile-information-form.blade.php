@@ -1,10 +1,10 @@
 <section>
     <header>
-            <h2 class="text-lg font-medium text-gray-900">
+            <h2 class="text-lg font-medium text-slate-900">
                 {{ __('Información del perfil') }}
             </h2>
 
-            <p class="mt-1 text-sm text-gray-600">
+            <p class="mt-1 text-sm text-slate-600">
                 {{ __("Update your account's profile information, email address, phone and shipping address.") }}
             </p>
     </header>
@@ -30,10 +30,10 @@
 
             @if ($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && ! $user->hasVerifiedEmail())
                 <div>
-                    <p class="text-sm mt-2 text-gray-800">
+                    <p class="text-sm mt-2 text-slate-800">
                         {{ __('Your email address is unverified.') }}
 
-                        <button form="send-verification" class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                        <button form="send-verification" class="underline text-sm text-slate-600 hover:text-slate-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500">
                             {{ __('Click here to re-send the verification email.') }}
                         </button>
                     </p>
@@ -52,16 +52,16 @@
             <x-input-label for="phone" value="Teléfono" />
             <x-text-input id="phone" name="phone" type="tel" class="mt-1 block w-full" :value="old('phone', $user->phone)" autocomplete="tel" placeholder="+591 70000000" />
             <x-input-error class="mt-2" :messages="$errors->get('phone')" />
-            <p class="mt-1 text-sm text-gray-500">
+            <p class="mt-1 text-sm text-slate-500">
                 Lo usamos para avisarte cuando tu pedido salga a entrega.
             </p>
         </div>
 
         <div>
             <x-input-label for="address" value="Dirección de envío" />
-            <textarea id="address" name="address" rows="3" class="mt-1 block w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" placeholder="Av. Siempre Viva 742, La Paz" autocomplete="street-address">{{ old('address', $user->address) }}</textarea>
+            <textarea id="address" name="address" rows="3" class="mt-1 block w-full border-slate-300 focus:border-teal-500 focus:ring-teal-500 rounded-md shadow-sm" placeholder="Av. Siempre Viva 742, La Paz" autocomplete="street-address">{{ old('address', $user->address) }}</textarea>
             <x-input-error class="mt-2" :messages="$errors->get('address')" />
-            <p class="mt-1 text-sm text-gray-500">
+            <p class="mt-1 text-sm text-slate-500">
                 Se usa como valor por defecto al confirmar tu compra, pero puedes cambiarla en el carrito.
             </p>
         </div>
@@ -75,7 +75,7 @@
                     x-show="show"
                     x-transition
                     x-init="setTimeout(() => show = false, 2000)"
-                    class="text-sm text-gray-600"
+                    class="text-sm text-slate-600"
                 >{{ __('Guardado.') }}</p>
             @endif
         </div>

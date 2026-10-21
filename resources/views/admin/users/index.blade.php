@@ -9,7 +9,7 @@
         <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
             <div>
                 <h1 class="text-2xl font-bold">Usuarios</h1>
-                <p class="text-sm text-gray-600">{{ $users->total() }} usuario(s) registrados</p>
+                <p class="text-sm text-slate-600">{{ $users->total() }} usuario(s) registrados</p>
             </div>
 
             <a href="{{ route('admin.users.create') }}"
@@ -23,14 +23,14 @@
         <form method="GET" action="{{ route('admin.users.index') }}" class="bg-white rounded shadow p-4 mb-6">
             <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
                 <label class="text-sm">
-                    <span class="block text-gray-600 mb-1">Buscar</span>
+                    <span class="block text-slate-600 mb-1">Buscar</span>
                     <input type="text" name="search" value="{{ $filters['search'] ?? '' }}"
-                           placeholder="Nombre o email" class="w-full border-gray-300 rounded">
+                           placeholder="Nombre o email" class="w-full border-slate-300 rounded">
                 </label>
 
                 <label class="text-sm">
-                    <span class="block text-gray-600 mb-1">Rol</span>
-                    <select name="role" class="w-full border-gray-300 rounded">
+                    <span class="block text-slate-600 mb-1">Rol</span>
+                    <select name="role" class="w-full border-slate-300 rounded">
                         <option value="">Todos</option>
                         @foreach ($roles as $role)
                             <option value="{{ $role->id }}" @selected(($filters['role'] ?? null) == $role->id)>
@@ -41,8 +41,8 @@
                 </label>
 
                 <label class="text-sm">
-                    <span class="block text-gray-600 mb-1">Estado</span>
-                    <select name="status" class="w-full border-gray-300 rounded">
+                    <span class="block text-slate-600 mb-1">Estado</span>
+                    <select name="status" class="w-full border-slate-300 rounded">
                         <option value="">Todos</option>
                         @foreach (User::STATUSES as $status)
                             <option value="{{ $status }}" @selected(($filters['status'] ?? null) === $status)>
@@ -54,7 +54,7 @@
 
                 <div class="flex items-end gap-2">
                     <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded text-sm">Filtrar</button>
-                    <a href="{{ route('admin.users.index') }}" class="px-4 py-2 bg-gray-200 text-gray-700 rounded text-sm">
+                    <a href="{{ route('admin.users.index') }}" class="px-4 py-2 bg-slate-200 text-slate-700 rounded text-sm">
                         Limpiar
                     </a>
                 </div>
@@ -66,7 +66,7 @@
 
         <div class="bg-white rounded shadow overflow-x-auto">
             <table class="min-w-full">
-                <thead class="bg-gray-100">
+                <thead class="bg-slate-100">
                     <tr>
                         <th class="px-4 py-2 text-left">Usuario</th>
                         <th class="px-4 py-2 text-left">Rol</th>
@@ -87,20 +87,20 @@
                                         <p class="font-medium">
                                             {{ $user->name }}
                                             @if ($user->is(auth()->user()))
-                                                <span class="text-xs text-gray-500">(vos)</span>
+                                                <span class="text-xs text-slate-500">(vos)</span>
                                             @endif
                                         </p>
-                                        <p class="text-xs text-gray-500">{{ $user->email }}</p>
+                                        <p class="text-xs text-slate-500">{{ $user->email }}</p>
                                     </div>
                                 </div>
                             </td>
                             <td class="px-4 py-2">{{ $user->role?->name ?? '—' }}</td>
                             <td class="px-4 py-2">
-                                <span class="px-2 py-1 rounded text-xs font-medium {{ $user->isActive() ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-800' }}">
+                                <span class="px-2 py-1 rounded text-xs font-medium {{ $user->isActive() ? 'bg-green-100 text-green-800' : 'bg-slate-100 text-slate-800' }}">
                                     {{ $user->statusLabel() }}
                                 </span>
                             </td>
-                            <td class="px-4 py-2 text-sm text-gray-600">{{ $user->created_at->format('d/m/Y') }}</td>
+                            <td class="px-4 py-2 text-sm text-slate-600">{{ $user->created_at->format('d/m/Y') }}</td>
                             <td class="px-4 py-2">
                                 <div class="flex items-center gap-3">
                                     <a href="{{ route('admin.users.edit', $user) }}"
@@ -121,7 +121,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="5" class="px-4 py-6 text-gray-600">
+                            <td colspan="5" class="px-4 py-6 text-slate-600">
                                 No hay usuarios que coincidan con el filtro.
                             </td>
                         </tr>

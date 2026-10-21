@@ -35,31 +35,31 @@
             @endif
 
             <label class="block text-sm">
-                <span class="block text-gray-600 mb-1">Nombre <span class="text-red-600">*</span></span>
+                <span class="block text-slate-600 mb-1">Nombre <span class="text-red-600">*</span></span>
                 <input type="text" name="name" value="{{ old('name', $category->name) }}" required
-                       maxlength="255" class="w-full border-gray-300 rounded" autofocus>
-                <span class="text-xs text-gray-500">
+                       maxlength="255" class="w-full border-slate-300 rounded" autofocus>
+                <span class="text-xs text-slate-500">
                     El nombre debe ser único: es lo que el cliente ve en el filtro del catálogo.
                 </span>
                 @error('name') <span class="text-sm text-red-600">{{ $message }}</span> @enderror
             </label>
 
             <label class="block text-sm">
-                <span class="block text-gray-600 mb-1">Identificador externo</span>
+                <span class="block text-slate-600 mb-1">Identificador externo</span>
                 <input type="text" name="external_category_id"
                        value="{{ old('external_category_id', $category->external_category_id) }}"
-                       maxlength="255" class="w-full border-gray-300 rounded">
-                <span class="text-xs text-gray-500">
+                       maxlength="255" class="w-full border-slate-300 rounded">
+                <span class="text-xs text-slate-500">
                     Lo completa la sincronización con la API de AliExpress.
                 </span>
                 @error('external_category_id') <span class="text-sm text-red-600">{{ $message }}</span> @enderror
             </label>
 
             @if ($isEdit)
-                <p class="text-sm text-gray-600">
+                <p class="text-sm text-slate-600">
                     Slug actual: <strong>{{ $category->slug }}</strong> (se recalcula al guardar).
                 </p>
-                <p class="text-sm text-gray-600">
+                <p class="text-sm text-slate-600">
                     Productos asignados: <strong>{{ $category->productsCount() }}</strong>.
                     Con productos asignados la categoría no se puede eliminar.
                 </p>
@@ -69,7 +69,7 @@
                 <button type="submit" class="px-5 py-2 bg-blue-600 text-white rounded">
                     {{ $isEdit ? 'Guardar cambios' : 'Crear categoría' }}
                 </button>
-                <a href="{{ route('admin.categories.index') }}" class="px-5 py-2 bg-gray-200 text-gray-700 rounded">
+                <a href="{{ route('admin.categories.index') }}" class="px-5 py-2 bg-slate-200 text-slate-700 rounded">
                     Cancelar
                 </a>
             </div>

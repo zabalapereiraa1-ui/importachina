@@ -7,7 +7,7 @@
         <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
             <div>
                 <h1 class="text-2xl font-bold">Reporte de ventas</h1>
-                <p class="text-sm text-gray-600">
+                <p class="text-sm text-slate-600">
                     Del {{ $from->format('d/m/Y') }} al {{ $to->format('d/m/Y') }}
                     ({{ $daily->count() }} días)
                 </p>
@@ -15,18 +15,18 @@
 
             <form method="GET" action="{{ route('admin.reports.index') }}" class="flex flex-wrap items-end gap-2">
                 <div>
-                    <label for="from" class="block text-xs font-medium text-gray-600 mb-1">Fecha inicial</label>
+                    <label for="from" class="block text-xs font-medium text-slate-600 mb-1">Fecha inicial</label>
                     <input type="date" id="from" name="from" value="{{ $from->format('Y-m-d') }}"
                            class="border rounded px-3 py-2 text-sm">
                 </div>
                 <div>
-                    <label for="to" class="block text-xs font-medium text-gray-600 mb-1">Fecha final</label>
+                    <label for="to" class="block text-xs font-medium text-slate-600 mb-1">Fecha final</label>
                     <input type="date" id="to" name="to" value="{{ $to->format('Y-m-d') }}"
                            class="border rounded px-3 py-2 text-sm">
                 </div>
                 <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded text-sm">Filtrar</button>
                 <a href="{{ route('admin.reports.index') }}"
-                   class="px-4 py-2 bg-gray-200 text-gray-700 rounded text-sm">Limpiar</a>
+                   class="px-4 py-2 bg-slate-200 text-slate-700 rounded text-sm">Limpiar</a>
             </form>
         </div>
 
@@ -42,39 +42,39 @@
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
             <div class="bg-white rounded shadow p-4">
-                <p class="text-xs uppercase tracking-wide text-gray-500">Total vendido</p>
-                <p class="text-2xl font-bold text-gray-900">Bs {{ number_format($revenue, 2) }}</p>
+                <p class="text-xs uppercase tracking-wide text-slate-500">Total vendido</p>
+                <p class="text-2xl font-bold text-slate-900">Bs {{ number_format($revenue, 2) }}</p>
             </div>
             <div class="bg-white rounded shadow p-4">
-                <p class="text-xs uppercase tracking-wide text-gray-500">Pedidos vendidos</p>
-                <p class="text-2xl font-bold text-gray-900">{{ $ordersCount }}</p>
+                <p class="text-xs uppercase tracking-wide text-slate-500">Pedidos vendidos</p>
+                <p class="text-2xl font-bold text-slate-900">{{ $ordersCount }}</p>
             </div>
             <div class="bg-white rounded shadow p-4">
-                <p class="text-xs uppercase tracking-wide text-gray-500">Ticket promedio</p>
-                <p class="text-2xl font-bold text-gray-900">Bs {{ number_format($averageTicket, 2) }}</p>
+                <p class="text-xs uppercase tracking-wide text-slate-500">Ticket promedio</p>
+                <p class="text-2xl font-bold text-slate-900">Bs {{ number_format($averageTicket, 2) }}</p>
             </div>
             <div class="bg-white rounded shadow p-4">
-                <p class="text-xs uppercase tracking-wide text-gray-500">Unidades vendidas</p>
-                <p class="text-2xl font-bold text-gray-900">{{ $unitsSold }}</p>
+                <p class="text-xs uppercase tracking-wide text-slate-500">Unidades vendidas</p>
+                <p class="text-2xl font-bold text-slate-900">{{ $unitsSold }}</p>
             </div>
         </div>
 
-        <p class="text-sm text-gray-600 mb-6">
+        <p class="text-sm text-slate-600 mb-6">
             Cuentan como venta los pedidos en estado
             <strong>Pagado, Enviado y Entregado</strong>. Quedan {{ $pendingCount }} pedido(s) pendientes en el periodo.
         </p>
 
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
             <div class="bg-white rounded shadow overflow-hidden">
-                <div class="px-4 py-3 border-b bg-gray-50">
+                <div class="px-4 py-3 border-b bg-slate-50">
                     <h2 class="font-semibold">5 productos más vendidos</h2>
                 </div>
 
                 @if($topProducts->isEmpty())
-                    <p class="px-4 py-6 text-gray-600 text-sm">No hay ventas en el periodo seleccionado.</p>
+                    <p class="px-4 py-6 text-slate-600 text-sm">No hay ventas en el periodo seleccionado.</p>
                 @else
                     <table class="min-w-full">
-                        <thead class="bg-gray-100">
+                        <thead class="bg-slate-100">
                             <tr>
                                 <th class="px-4 py-2 text-left">#</th>
                                 <th class="px-4 py-2 text-left">Producto</th>
@@ -85,7 +85,7 @@
                         <tbody>
                             @foreach($topProducts as $index => $item)
                                 <tr class="border-t">
-                                    <td class="px-4 py-2 text-gray-500">{{ $index + 1 }}</td>
+                                    <td class="px-4 py-2 text-slate-500">{{ $index + 1 }}</td>
                                     <td class="px-4 py-2">
                                         <div class="flex items-center gap-2">
                                             @if($item->image_url)
@@ -105,30 +105,30 @@
             </div>
 
             <div class="bg-white rounded shadow overflow-hidden">
-                <div class="px-4 py-3 border-b bg-gray-50">
+                <div class="px-4 py-3 border-b bg-slate-50">
                     <h2 class="font-semibold">Venta por día</h2>
                 </div>
 
                 @php $maxDay = $daily->max('total'); @endphp
 
                 @if($daily->isEmpty() || $maxDay <= 0)
-                    <p class="px-4 py-6 text-gray-600 text-sm">No hay ventas en el periodo seleccionado.</p>
+                    <p class="px-4 py-6 text-slate-600 text-sm">No hay ventas en el periodo seleccionado.</p>
                 @else
                     <div class="p-4 space-y-2">
                         @foreach($daily as $day)
                             @if($day['total'] > 0)
                                 <div class="flex items-center gap-3">
-                                    <span class="text-xs text-gray-600 w-20 shrink-0">
+                                    <span class="text-xs text-slate-600 w-20 shrink-0">
                                         {{ $day['date']->format('d/m') }}
                                     </span>
-                                    <div class="flex-1 bg-gray-100 rounded h-5 overflow-hidden">
+                                    <div class="flex-1 bg-slate-100 rounded h-5 overflow-hidden">
                                         <div class="bg-blue-600 h-5"
                                              style="width: {{ round($day['total'] / $maxDay * 100, 1) }}%"></div>
                                     </div>
                                     <span class="text-xs font-semibold w-24 text-right shrink-0">
                                         Bs {{ number_format($day['total'], 2) }}
                                     </span>
-                                    <span class="text-xs text-gray-500 w-16 text-right shrink-0">
+                                    <span class="text-xs text-slate-500 w-16 text-right shrink-0">
                                         {{ $day['orders'] }} ped.
                                     </span>
                                 </div>

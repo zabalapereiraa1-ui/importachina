@@ -9,7 +9,7 @@
 
     <div class="bg-white rounded shadow overflow-hidden">
         <table class="min-w-full">
-            <thead class="bg-gray-100">
+            <thead class="bg-slate-100">
                 <tr>
                     <th class="px-4 py-2 text-left">N° Pedido</th>
                     <th class="px-4 py-2 text-left">Fecha</th>
@@ -30,7 +30,7 @@
                         </td>
                     </tr>
                 @empty
-                    <tr><td colspan="5" class="px-4 py-2 text-gray-600">No tienes pedidos</td></tr>
+                    <tr><td colspan="5" class="px-4 py-2 text-slate-600">No tienes pedidos</td></tr>
                 @endforelse
             </tbody>
         </table>

@@ -17,7 +17,7 @@
     <h2 class="text-lg font-bold mb-2">Productos</h2>
     <div class="bg-white rounded shadow overflow-hidden">
         <table class="min-w-full">
-            <thead class="bg-gray-100">
+            <thead class="bg-slate-100">
                 <tr>
                     <th class="px-4 py-2 text-left">Producto</th>
                     <th class="px-4 py-2 text-left">Cantidad</th>

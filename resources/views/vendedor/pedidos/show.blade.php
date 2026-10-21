@@ -29,13 +29,13 @@
                 </div>
 
                 <dl class="grid gap-2 sm:grid-cols-2">
-                    <div><dt class="text-sm text-gray-500">Fecha</dt>
+                    <div><dt class="text-sm text-slate-500">Fecha</dt>
                         <dd>{{ $order->created_at->format('d/m/Y H:i') }}</dd></div>
-                    <div><dt class="text-sm text-gray-500">Total</dt>
+                    <div><dt class="text-sm text-slate-500">Total</dt>
                         <dd class="font-semibold">Bs {{ number_format($order->total, 2) }}</dd></div>
-                    <div><dt class="text-sm text-gray-500">Unidades</dt>
+                    <div><dt class="text-sm text-slate-500">Unidades</dt>
                         <dd>{{ $order->items->sum('quantity') }}</dd></div>
-                    <div><dt class="text-sm text-gray-500">Pagado</dt>
+                    <div><dt class="text-sm text-slate-500">Pagado</dt>
                         <dd>{{ $paidAmount > 0 ? 'Bs ' . number_format($paidAmount, 2) : 'Sin pagos' }}</dd></div>
                 </dl>
             </div>
@@ -43,7 +43,7 @@
             <div class="bg-white rounded shadow overflow-hidden">
                 <h2 class="text-lg font-bold p-6 pb-0">Productos</h2>
                 <table class="min-w-full mt-4">
-                    <thead class="bg-gray-100">
+                    <thead class="bg-slate-100">
                         <tr>
                             <th class="px-4 py-2 text-left">Producto</th>
                             <th class="px-4 py-2 text-left">Cantidad</th>
@@ -60,7 +60,7 @@
                                 <td class="px-4 py-2">Bs {{ number_format($item->unit_price * $item->quantity, 2) }}</td>
                             </tr>
                         @empty
-                            <tr><td colspan="4" class="px-4 py-2 text-gray-600">El pedido no tiene productos</td></tr>
+                            <tr><td colspan="4" class="px-4 py-2 text-slate-600">El pedido no tiene productos</td></tr>
                         @endforelse
                     </tbody>
                 </table>
@@ -70,17 +70,17 @@
                 <h2 class="text-lg font-bold mb-4">Pagos registrados</h2>
 
                 @if ($order->payments->isEmpty())
-                    <p class="text-gray-600 text-sm">Todavia no se registro ningun pago para este pedido.</p>
+                    <p class="text-slate-600 text-sm">Todavia no se registro ningun pago para este pedido.</p>
                 @else
                     <div class="space-y-3">
                         @foreach ($order->payments as $payment)
-                            <div class="border rounded p-3 {{ $payment->isVoided() ? 'bg-gray-50' : '' }}">
+                            <div class="border rounded p-3 {{ $payment->isVoided() ? 'bg-slate-50' : '' }}">
                                 <div class="flex flex-wrap items-center justify-between gap-2">
                                     <div>
-                                        <p class="text-sm font-medium {{ $payment->isVoided() ? 'line-through text-gray-500' : '' }}">
+                                        <p class="text-sm font-medium {{ $payment->isVoided() ? 'line-through text-slate-500' : '' }}">
                                             Bs {{ number_format($payment->amount, 2) }} — {{ $payment->methodLabel() }}
                                         </p>
-                                        <p class="text-xs text-gray-500">
+                                        <p class="text-xs text-slate-500">
                                             {{ $payment->paid_at?->format('d/m/Y') ?? 'Sin fecha' }}
                                             <span class="px-2 py-0.5 rounded ml-1 {{ $payment->statusBadgeClass() }}">
                                                 {{ $payment->statusLabel() }}
@@ -97,13 +97,13 @@
 
                                                 <form method="POST"
                                                       action="{{ route('vendedor.payments.update', [$order, $payment]) }}"
-                                                      class="mt-2 w-64 space-y-2 bg-gray-50 border rounded p-3">
+                                                      class="mt-2 w-64 space-y-2 bg-slate-50 border rounded p-3">
                                                     @csrf
                                                     @method('PUT')
 
                                                     <label class="block text-xs">
-                                                        <span class="block text-gray-600 mb-1">Metodo</span>
-                                                        <select name="method" class="w-full border-gray-300 rounded text-sm">
+                                                        <span class="block text-slate-600 mb-1">Metodo</span>
+                                                        <select name="method" class="w-full border-slate-300 rounded text-sm">
                                                             @foreach ($paymentMethods as $value => $label)
                                                                 <option value="{{ $value }}" @selected($value === $payment->method)>{{ $label }}</option>
                                                             @endforeach
@@ -111,17 +111,17 @@
                                                     </label>
 
                                                     <label class="block text-xs">
-                                                        <span class="block text-gray-600 mb-1">Monto (Bs)</span>
+                                                        <span class="block text-slate-600 mb-1">Monto (Bs)</span>
                                                         <input type="number" name="amount" step="0.01" min="0.01" required
                                                                value="{{ number_format($payment->amount, 2, '.', '') }}"
-                                                               class="w-full border-gray-300 rounded text-sm">
+                                                               class="w-full border-slate-300 rounded text-sm">
                                                     </label>
 
                                                     <label class="block text-xs">
-                                                        <span class="block text-gray-600 mb-1">Fecha del pago</span>
+                                                        <span class="block text-slate-600 mb-1">Fecha del pago</span>
                                                         <input type="date" name="paid_at"
                                                                value="{{ $payment->paid_at?->format('Y-m-d') }}"
-                                                               class="w-full border-gray-300 rounded text-sm">
+                                                               class="w-full border-slate-300 rounded text-sm">
                                                     </label>
 
                                                     @error('method') <p class="text-xs text-red-600">{{ $message }}</p> @enderror
@@ -168,8 +168,8 @@
                     @csrf
                     @method('PUT')
 
-                    <label class="text-sm block mb-1 text-gray-600" for="status">Estado</label>
-                    <select id="status" name="status" class="w-full border-gray-300 rounded mb-3">
+                    <label class="text-sm block mb-1 text-slate-600" for="status">Estado</label>
+                    <select id="status" name="status" class="w-full border-slate-300 rounded mb-3">
                         @foreach ($order->nextStatuses() as $status)
                             <option value="{{ $status }}" @selected($status === $order->status)>{{ ucfirst($status) }}</option>
                         @endforeach
@@ -185,14 +185,14 @@
                 <h2 class="text-lg font-bold mb-3">Registrar pago</h2>
 
                 @if ($order->isClosed())
-                    <p class="text-sm text-gray-600">El pedido ya fue entregado, no admite nuevos pagos.</p>
+                    <p class="text-sm text-slate-600">El pedido ya fue entregado, no admite nuevos pagos.</p>
                 @else
                     <form method="POST" action="{{ route('vendedor.payments.store', $order) }}" class="space-y-3">
                         @csrf
 
                         <label class="text-sm block">
-                            <span class="block text-gray-600 mb-1">Metodo</span>
-                            <select name="method" class="w-full border-gray-300 rounded">
+                            <span class="block text-slate-600 mb-1">Metodo</span>
+                            <select name="method" class="w-full border-slate-300 rounded">
                                 @foreach ($paymentMethods as $value => $label)
                                     <option value="{{ $value }}" @selected($value === 'efectivo')>{{ $label }}</option>
                                 @endforeach
@@ -200,16 +200,16 @@
                         </label>
 
                         <label class="text-sm block">
-                            <span class="block text-gray-600 mb-1">Monto (Bs)</span>
+                            <span class="block text-slate-600 mb-1">Monto (Bs)</span>
                             <input type="number" name="amount" step="0.01" min="0.01"
                                    value="{{ old('amount', number_format($order->total, 2, '.', '')) }}"
-                                   class="w-full border-gray-300 rounded">
+                                   class="w-full border-slate-300 rounded">
                         </label>
 
                         <label class="text-sm block">
-                            <span class="block text-gray-600 mb-1">Fecha del pago</span>
+                            <span class="block text-slate-600 mb-1">Fecha del pago</span>
                             <input type="date" name="paid_at" value="{{ old('paid_at', now()->format('Y-m-d')) }}"
-                                   class="w-full border-gray-300 rounded">
+                                   class="w-full border-slate-300 rounded">
                         </label>
 
                         @error('method') <p class="text-sm text-red-600">{{ $message }}</p> @enderror

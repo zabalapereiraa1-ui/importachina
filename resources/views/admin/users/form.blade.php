@@ -38,35 +38,35 @@
                 <h2 class="text-lg font-bold">Datos de la cuenta</h2>
 
                 <label class="block text-sm">
-                    <span class="block text-gray-600 mb-1">Nombre <span class="text-red-600">*</span></span>
+                    <span class="block text-slate-600 mb-1">Nombre <span class="text-red-600">*</span></span>
                     <input type="text" name="name" value="{{ old('name', $user->name) }}" required
-                           maxlength="255" class="w-full border-gray-300 rounded">
+                           maxlength="255" class="w-full border-slate-300 rounded">
                     @error('name') <span class="text-sm text-red-600">{{ $message }}</span> @enderror
                 </label>
 
                 <label class="block text-sm">
-                    <span class="block text-gray-600 mb-1">Email <span class="text-red-600">*</span></span>
+                    <span class="block text-slate-600 mb-1">Email <span class="text-red-600">*</span></span>
                     <input type="email" name="email" value="{{ old('email', $user->email) }}" required
-                           maxlength="255" class="w-full border-gray-300 rounded">
+                           maxlength="255" class="w-full border-slate-300 rounded">
                     @error('email') <span class="text-sm text-red-600">{{ $message }}</span> @enderror
                 </label>
 
                 <div class="grid gap-4 sm:grid-cols-2">
                     <label class="block text-sm">
-                        <span class="block text-gray-600 mb-1">
+                        <span class="block text-slate-600 mb-1">
                             Contrasena {{ $isEdit ? '(dejalo vacio para no cambiarla)' : '' }}
                         </span>
                         <input type="password" name="password" autocomplete="new-password"
                                @required(! $isEdit)
-                               class="w-full border-gray-300 rounded">
+                               class="w-full border-slate-300 rounded">
                         @error('password') <span class="text-sm text-red-600">{{ $message }}</span> @enderror
                     </label>
 
                     <label class="block text-sm">
-                        <span class="block text-gray-600 mb-1">Confirmar contrasena</span>
+                        <span class="block text-slate-600 mb-1">Confirmar contrasena</span>
                         <input type="password" name="password_confirmation" autocomplete="new-password"
                                @required(! $isEdit)
-                               class="w-full border-gray-300 rounded">
+                               class="w-full border-slate-300 rounded">
                     </label>
                 </div>
             </div>
@@ -75,8 +75,8 @@
                 <h2 class="text-lg font-bold">Rol y estado</h2>
 
                 <label class="block text-sm">
-                    <span class="block text-gray-600 mb-1">Rol <span class="text-red-600">*</span></span>
-                    <select name="role_id" required class="w-full border-gray-300 rounded">
+                    <span class="block text-slate-600 mb-1">Rol <span class="text-red-600">*</span></span>
+                    <select name="role_id" required class="w-full border-slate-300 rounded">
                         <option value="">Selecciona un rol</option>
                         @foreach ($roles as $role)
                             <option value="{{ $role->id }}" @selected(old('role_id', $user->role_id) == $role->id)>
@@ -88,12 +88,12 @@
                 </label>
 
                 <label class="block text-sm">
-                    <span class="block text-gray-600 mb-1">Estado <span class="text-red-600">*</span></span>
-                    <select name="status" required class="w-full border-gray-300 rounded">
+                    <span class="block text-slate-600 mb-1">Estado <span class="text-red-600">*</span></span>
+                    <select name="status" required class="w-full border-slate-300 rounded">
                         <option value="active" @selected(old('status', $user->status) === 'active')>Activo</option>
                         <option value="inactive" @selected(old('status', $user->status) === 'inactive')>Desactivado</option>
                     </select>
-                    <span class="text-xs text-gray-500">
+                    <span class="text-xs text-slate-500">
                         Un usuario desactivado no puede iniciar sesion.
                     </span>
                     @error('status') <span class="text-sm text-red-600">{{ $message }}</span> @enderror
@@ -110,7 +110,7 @@
                 <button type="submit" class="px-5 py-2 bg-blue-600 text-white rounded">
                     {{ $isEdit ? 'Guardar cambios' : 'Crear usuario' }}
                 </button>
-                <a href="{{ route('admin.users.index') }}" class="px-5 py-2 bg-gray-200 text-gray-700 rounded">
+                <a href="{{ route('admin.users.index') }}" class="px-5 py-2 bg-slate-200 text-slate-700 rounded">
                     Cancelar
                 </a>
             </div>

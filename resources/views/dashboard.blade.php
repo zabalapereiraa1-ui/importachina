@@ -6,7 +6,7 @@
     <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
         <div class="mb-6">
             <h1 class="text-2xl font-bold">Hola, {{ $user->name }}</h1>
-            <p class="text-sm text-gray-600">
+            <p class="text-sm text-slate-600">
                 @if ($isAdmin)
                     Resumen de la tienda y de tus pendientes de hoy.
                 @elseif ($isSeller)
@@ -38,8 +38,8 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
             @foreach ($kpis as [$label, $value])
                 <div class="bg-white rounded shadow p-4">
-                    <p class="text-xs uppercase tracking-wide text-gray-500">{{ $label }}</p>
-                    <p class="text-2xl font-bold text-gray-900">{{ $value }}</p>
+                    <p class="text-xs uppercase tracking-wide text-slate-500">{{ $label }}</p>
+                    <p class="text-2xl font-bold text-slate-900">{{ $value }}</p>
                 </div>
             @endforeach
         </div>
@@ -57,12 +57,12 @@
                 @endphp
 
                 @if ($orders->isEmpty())
-                    <p class="text-sm text-gray-500">Todavía no hay pedidos.</p>
+                    <p class="text-sm text-slate-500">Todavía no hay pedidos.</p>
                 @else
                     <div class="overflow-x-auto">
                         <table class="w-full text-sm">
                             <thead>
-                                <tr class="border-b text-left text-xs uppercase tracking-wide text-gray-500">
+                                <tr class="border-b text-left text-xs uppercase tracking-wide text-slate-500">
                                     <th class="py-2 pr-4">Pedido</th>
                                     @if ($isSeller)
                                         <th class="py-2 pr-4">Cliente</th>
@@ -88,7 +88,7 @@
                                                 {{ $order->statusLabel() }}
                                             </span>
                                         </td>
-                                        <td class="py-2 text-gray-500">{{ $order->created_at->format('d/m/Y') }}</td>
+                                        <td class="py-2 text-slate-500">{{ $order->created_at->format('d/m/Y') }}</td>
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -114,7 +114,7 @@
                                 </span>
                             </div>
                         @empty
-                            <p class="text-sm text-gray-500">Ningún producto con stock bajo.</p>
+                            <p class="text-sm text-slate-500">Ningún producto con stock bajo.</p>
                         @endforelse
                     </div>
                 @endif
